@@ -11,6 +11,7 @@ frontend:
         - npm ci --prefer-offline
     build:
       commands:
+        - npx ampx generate outputs --branch $AWS_BRANCH --app-id $AWS_APP_ID
         - npm run build
   artifacts:
     baseDirectory: .next
