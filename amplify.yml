@@ -1,5 +1,4 @@
 version: 1
-framework: Next.js - SSR
 frontend:
   phases:
     preBuild:
@@ -11,7 +10,6 @@ frontend:
         - npm --prefix app ci --prefer-offline
     build:
       commands:
-        - npx ampx generate outputs --branch $AWS_BRANCH --app-id $AWS_APP_ID
         - npm --prefix app run build
   artifacts:
     baseDirectory: app/.next
