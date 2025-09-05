@@ -8,17 +8,19 @@ frontend:
         - nvm use 20
         - node -v
         - npm i -g npm@latest
+        - cd web
         - npm ci --prefer-offline
     build:
       commands:
         - npx ampx generate outputs --branch $AWS_BRANCH --app-id $AWS_APP_ID
+        - cd web
         - npm run build
   artifacts:
-    baseDirectory: .next
+    baseDirectory: web/.next
     files:
       - '**/*'
   cache:
     paths:
-      - .next/cache/**/*
-      - node_modules/**/*
+      - web/.next/cache/**/*
+      - web/node_modules/**/*
 
