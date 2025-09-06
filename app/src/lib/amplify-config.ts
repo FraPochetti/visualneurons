@@ -1,15 +1,12 @@
 import { Amplify } from 'aws-amplify';
 import outputs from '../../../amplify_outputs.json';
 
-// Override the API URL if provided via environment variable
-const config = {
-  ...outputs,
-  custom: {
-    ...outputs.custom,
-    api_url: process.env.NEXT_PUBLIC_API_URL || outputs.custom?.api_url || '',
-  },
-};
+// Configure Amplify with whatever the CI generated
+Amplify.configure(outputs as unknown as Record<string, unknown>);
 
-Amplify.configure(config);
+// Expose API URL for our custom REST API without assuming `custom` exists in outputs
+export const API_URL: string =
+  process.env.NEXT_PUBLIC_API_URL ||
+  (((outputs as unknown as { custom?: { api_url?: string } }).custom?.api_url) ?? '');
 
-export default config;
+export default outputs as unknown as Record<string, unknown>;

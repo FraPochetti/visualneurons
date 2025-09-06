@@ -1,7 +1,5 @@
 import { fetchAuthSession } from 'aws-amplify/auth';
-import config from './amplify-config';
-
-const API_URL = config.custom?.api_url || process.env.NEXT_PUBLIC_API_URL || '';
+import { API_URL } from './amplify-config';
 
 interface Asset {
   assetId: string;
