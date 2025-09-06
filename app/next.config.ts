@@ -1,12 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  experimental: {
-    turbo: {
-      // Silence workspace root inference warning in monorepo by setting explicit root
-      root: "..",
-    },
-  },
+  // Remove turbopack config - not needed for production builds
 };
 
 export default nextConfig;
