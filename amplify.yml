@@ -9,6 +9,7 @@ applications:
             - nvm use 20
             - node -v
             - npm i -g npm@latest
+            - cd .. && npx ampx generate outputs --branch $AWS_BRANCH --app-id $AWS_APP_ID && cd app
             - npm ci --prefer-offline
         build:
           commands:

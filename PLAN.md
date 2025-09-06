@@ -3,7 +3,7 @@
 Desktop-only, asset-centric image workflow with a chat-style timeline per asset. Providers: Google Gemini 2.5 “Nano Banana” (multimodal + txt2img), Google Imagen 4 (txt2img), Replicate (background removal, 4× upscaling). AWS Amplify in eu-central-1 with Cognito, S3 (presigned URLs), Lambda REST API, DynamoDB. All AWS resources are provisioned and invoked via Amplify. Keep it simple: synchronous API calls + client polling; a single webhook for Replicate.
 
 ### Phase 0 — Foundations
-- [ ] Set up Amplify app (eu-central-1) and Hosting pipeline (prod + preview envs)
+- [x] Set up Amplify app (eu-central-1) and Hosting pipeline (prod + preview envs)
 - [ ] Configure Cognito user pool and basic hosted UI; JWT validation in API (Amplify Auth)
 - [ ] Provision S3 buckets (raw/derivatives/thumbnails) with CORS, KMS, lifecycle rules (Amplify Storage)
 - [ ] Store provider secrets in Amplify (Google, Replicate)
@@ -23,8 +23,8 @@ Desktop-only, asset-centric image workflow with a chat-style timeline per asset.
 - [ ] Integrate Replicate background removal and 4× upscaling; persist outputs
 
 ### Phase 3 — Desktop-first modern UI
-- [ ] Scaffold Next.js + TypeScript + Tailwind + shadcn/ui + Radix (dark theme, desktop-only)
-- [ ] Build layout: AssetList (left), ChatTimeline (center), Inspector (right)
+- [x] Scaffold Next.js + TypeScript + Tailwind + shadcn/ui + Radix (dark theme, desktop-only)
+- [x] Build layout: AssetList (left), ChatTimeline (center), Inspector (right)
 - [ ] Implement Asset creation: upload (drag-drop/paste) or prompt (Imagen/Gemini)
 - [ ] Implement Message composer: provider/tool selector, minimal params
 - [ ] Implement timeline: result cards, progress polling, error states

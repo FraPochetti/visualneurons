@@ -10,5 +10,20 @@
   },
   "engines": {
     "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@aws-amplify/backend": "^1.16.1",
+    "@aws-amplify/backend-cli": "^1.8.0",
+    "@aws-sdk/client-dynamodb": "^3.883.0",
+    "@aws-sdk/client-s3": "^3.883.0",
+    "@aws-sdk/lib-dynamodb": "^3.883.0",
+    "@aws-sdk/s3-request-presigner": "^3.883.0",
+    "@types/aws-lambda": "^8.10.152",
+    "aws-amplify": "^6.15.5",
+    "aws-cdk-lib": "^2.214.0",
+    "constructs": "^10.4.2"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.1"
   }
 }
