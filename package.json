@@ -1,35 +1,12 @@
 {
-  "name": "next-amplified",
+  "name": "visualneurons",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "npm --prefix app run dev",
     "build": "npm --prefix app run build",
     "start": "npm --prefix app run start",
-    "lint": "npm --prefix app run lint",
-    "generate": "amplify sandbox --out amplify",
-    "pull:backend": "amplify pull",
-    "studio": "amplify sandbox"
-  },
-  "dependencies": {
-    "@aws-amplify/ui-react": "^6.0.0",
-    "aws-amplify": "^6.0.0",
-    "next": "^15.0.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
-  },
-  "devDependencies": {
-    "@aws-amplify/backend": "^1.16.1",
-    "@aws-amplify/backend-cli": "^1.8.0",
-    "@eslint/eslintrc": "^3",
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "eslint": "^9",
-    "eslint-config-next": "15.5.2",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "lint": "npm --prefix app run lint"
   },
   "engines": {
     "node": ">=18.0.0"
