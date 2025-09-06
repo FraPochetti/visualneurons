@@ -5,7 +5,7 @@ import { apiFunction } from './functions/api/resource.js';
 import { Stack } from 'aws-cdk-lib';
 import * as dynamodb from 'aws-cdk-lib/aws-dynamodb';
 import * as apigateway from 'aws-cdk-lib/aws-apigateway';
-// Note: iam is currently not used; keep import ready for future policies if needed
+import * as iam from 'aws-cdk-lib/aws-iam';
 
 const backend = defineBackend({
   auth,
@@ -35,11 +35,25 @@ const versionsTable = new dynamodb.Table(backendStack, 'VersionsTable', {
   billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
 });
 
-// Grant Lambda permissions to access tables and S3
+// Grant Lambda permissions to access tables
 assetsTable.grantReadWriteData(backend.apiFunction.resources.lambda);
 messagesTable.grantReadWriteData(backend.apiFunction.resources.lambda);
 versionsTable.grantReadWriteData(backend.apiFunction.resources.lambda);
-backend.storage.resources.bucket.grantReadWrite(backend.apiFunction.resources.lambda);
+
+// Avoid circular dependency (storage <-> auth) by attaching S3 access only to the
+// Lambda role (do not modify the bucket policy from this stack)
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const lambdaRole: any = (backend.apiFunction.resources.lambda as any).role;
+lambdaRole.addToPrincipalPolicy(new iam.PolicyStatement({
+  actions: ['s3:GetObject', 's3:PutObject', 's3:DeleteObject'],
+  resources: [
+    `${backend.storage.resources.bucket.bucketArn}/*`,
+  ],
+}));
+lambdaRole.addToPrincipalPolicy(new iam.PolicyStatement({
+  actions: ['s3:ListBucket'],
+  resources: [backend.storage.resources.bucket.bucketArn],
+}));
 
 // Set environment variables for Lambda (cast to Function to access addEnvironment)
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
