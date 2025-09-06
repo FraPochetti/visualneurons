@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "@/lib/amplify-config";
+import { AppProvider } from "@/contexts/AppContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,9 +27,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen w-screen overflow-hidden`}>
-        <div className="h-full w-full">
-          {children}
-        </div>
+        <AppProvider>
+          <div className="h-full w-full">
+            {children}
+          </div>
+        </AppProvider>
       </body>
     </html>
   );
