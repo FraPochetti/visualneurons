@@ -13,14 +13,8 @@ const backend = defineBackend({
   apiFunction,
 });
 
-// Get the authenticated user IAM role
-const authenticatedUserRole = backend.auth.resources.authenticatedUserIamRole;
-
-// Grant S3 permissions to authenticated users
-backend.storage.resources.bucket.grantReadWrite(authenticatedUserRole);
-
-// Get underlying CDK stack
-const backendStack = Stack.of(backend.storage.resources.bucket);
+// Place API and related infra in the same stack as the function to avoid cycles
+const backendStack = Stack.of(backend.apiFunction.resources.lambda);
 
 // Create DynamoDB tables
 const assetsTable = new dynamodb.Table(backendStack, 'AssetsTable', {

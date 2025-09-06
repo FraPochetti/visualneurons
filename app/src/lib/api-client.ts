@@ -32,11 +32,11 @@ class ApiClient {
       headers: await this.getAuthHeaders(),
       body: JSON.stringify({ title }),
     });
-    
+
     if (!response.ok) {
       throw new Error(`Failed to create asset: ${response.statusText}`);
     }
-    
+
     return response.json();
   }
 
@@ -45,11 +45,11 @@ class ApiClient {
       method: 'GET',
       headers: await this.getAuthHeaders(),
     });
-    
+
     if (!response.ok) {
       throw new Error(`Failed to fetch assets: ${response.statusText}`);
     }
-    
+
     return response.json();
   }
 
@@ -59,11 +59,11 @@ class ApiClient {
       headers: await this.getAuthHeaders(),
       body: JSON.stringify({ filename, contentType }),
     });
-    
+
     if (!response.ok) {
       throw new Error(`Failed to get upload URL: ${response.statusText}`);
     }
-    
+
     return response.json();
   }
 
@@ -75,7 +75,7 @@ class ApiClient {
         'Content-Type': file.type,
       },
     });
-    
+
     if (!response.ok) {
       throw new Error(`Failed to upload file: ${response.statusText}`);
     }

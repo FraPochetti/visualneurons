@@ -6,6 +6,7 @@ export const apiFunction = defineFunction({
     runtime: 20,
     timeoutSeconds: 30,
     memoryMB: 512,
+    resourceGroupName: 'auth',
     environment: {
         // Will add provider API keys here later
     },
